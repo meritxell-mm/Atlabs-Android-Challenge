@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Atlabs Github Challenge</string>
+
+    <string name="search_title">Github User Finder</string>
+    <string name="search_placeholder">Type a github username</string>
+    <string name="icon_search">Search</string>
+
 </resources>

@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    // id("org.jetbrains.kotlin.plugin.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
     // id("com.google.devtools.ksp")
     // id("dagger.hilt.android.plugin")
 }
@@ -39,17 +39,14 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    /* buildFeatures {
+     buildFeatures {
          compose = true
-     }
-     composeCompiler {
-         reportsDestination = layout.buildDirectory.dir("compose_compiler")
      }
      packaging {
          resources {
              excludes += "/META-INF/{AL2.0,LGPL2.1}"
          }
-     }*/
+     }
 }
 
 dependencies {
@@ -57,8 +54,27 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation(libs.constraintlayout)
+
+    //COMPOSE
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+    // Material Design 3
+    implementation(libs.material3)
+    // Optional - Integration with activities
+    implementation(libs.activity.compose)
+    // Optional - Integration with ViewModels
+    implementation(libs.lifecycle.viewmodel.compose)
+
+    // Android Studio Preview support
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
+
+    // UI Tests //TODO?
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //TESTING
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
