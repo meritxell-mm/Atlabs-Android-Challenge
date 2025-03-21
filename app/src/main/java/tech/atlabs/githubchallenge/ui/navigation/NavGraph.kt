@@ -5,7 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import tech.atlabs.githubchallenge.ui.composable.UserDetailScreen
+import tech.atlabs.githubchallenge.ui.screen.UserDetailScreen
 import tech.atlabs.githubchallenge.ui.screen.SearchScreen
 
 @Composable

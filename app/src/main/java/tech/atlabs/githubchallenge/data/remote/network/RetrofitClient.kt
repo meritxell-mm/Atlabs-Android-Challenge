@@ -1,10 +1,8 @@
-package tech.atlabs.githubchallenge.remote.network
+package tech.atlabs.githubchallenge.data.remote.network
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import tech.atlabs.githubchallenge.remote.api.GitHubUserApiService
+import tech.atlabs.githubchallenge.data.remote.api.GitHubUserApiService
 
 object RetrofitClient {
 

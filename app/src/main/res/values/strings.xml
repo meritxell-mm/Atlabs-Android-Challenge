@@ -4,11 +4,18 @@
     <string name="search_title">Github User Finder</string>
     <string name="search_placeholder">Type a github username</string>
     <string name="icon_search">Search</string>
-    <string name="user_card_no_name">No name available</string>
+    <string name="user_info_no_name">No name available</string>
     <string name="user_avatar">Avatar</string>
     <string name="user_card_no_login">No username available</string>
-    <string name="user_card_repositories">Repositories</string>
-    <string name="user_card_followers">Followers</string>
-    <string name="user_card_following">Following</string>
+    <string name="user_info_repositories">Repositories</string>
+    <string name="user_info_followers">Followers</string>
+    <string name="user_info_following">Following</string>
+    <string name="user_info_location">Location</string>
+    <string name="user_info_blog">Blog</string>
+    <string name="user_info_company">Company</string>
+    <string name="repo_info_stargazers">Stargazers</string>
+    <string name="repo_info_forks">Forks</string>
+    <string name="repo_info_language">Language</string>
+    <string name="repo_info_link">Link</string>
 
 </resources>

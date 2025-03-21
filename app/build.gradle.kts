@@ -60,6 +60,7 @@ dependencies {
     implementation(platform(libs.compose.bom))
     // Material Design 3
     implementation(libs.material3)
+    implementation(libs.androidx.material.icons.extended)
     // Optional - Integration with activities
     implementation(libs.activity.compose)
     // Optional - Integration with ViewModels

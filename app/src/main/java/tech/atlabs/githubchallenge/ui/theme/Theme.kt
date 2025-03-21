@@ -26,7 +26,7 @@ private val DarkColors = darkColorScheme(
 )
 
 @Composable
-fun GitHubChallengeTheme(
+fun GitHubChallengeTheme( //TODO review light/dark and portrait/landscape
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

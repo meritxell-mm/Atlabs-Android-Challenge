@@ -24,6 +24,8 @@ import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 @Composable
 fun SearchScreen(viewModel: UserViewModel, onUserClick: (String) -> Unit) {
 
+    //TODO offline
+
     val user by viewModel.user.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
 

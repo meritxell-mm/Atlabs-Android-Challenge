@@ -8,8 +8,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import tech.atlabs.githubchallenge.data.repository.UserRepository
 import tech.atlabs.githubchallenge.data.repository.UserRepositoryImpl
-import tech.atlabs.githubchallenge.remote.api.GitHubUserApiService
-import tech.atlabs.githubchallenge.remote.network.RetrofitClient
+import tech.atlabs.githubchallenge.data.remote.api.GitHubUserApiService
+import tech.atlabs.githubchallenge.data.remote.network.RetrofitClient
+import tech.atlabs.githubchallenge.data.repository.RepoRepository
+import tech.atlabs.githubchallenge.data.repository.RepoRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -35,6 +37,12 @@ object GitHubChallengeModule {
     @Singleton
     fun provideUserRepository(apiService: GitHubUserApiService): UserRepository {
         return UserRepositoryImpl(apiService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepoRepository(apiService: GitHubUserApiService): RepoRepository {
+        return RepoRepositoryImpl(apiService)
     }
 
 
