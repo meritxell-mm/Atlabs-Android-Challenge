@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.compose")
-    // id("com.google.devtools.ksp")
-    // id("dagger.hilt.android.plugin")
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -58,7 +58,6 @@ dependencies {
 
     //COMPOSE
     implementation(platform(libs.compose.bom))
-    androidTestImplementation(platform(libs.compose.bom))
     // Material Design 3
     implementation(libs.material3)
     // Optional - Integration with activities
@@ -70,12 +69,28 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
 
-    // UI Tests //TODO?
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
     //TESTING
-    testImplementation(libs.junit)
+    implementation(libs.androidx.ui.test.junit4.android)
+    androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // UI Tests //TODO?
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation("io.mockk:mockk:1.13.2")
+
+    //RETROFIT
+    implementation(libs.retrofit)
+    //MOSHI (JSON mapper)
+    implementation(libs.moshi)
+    implementation(libs.converter.moshi)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
+
+    //HILT
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    ksp(libs.dagger.hilt.compiler)
+
+    //COIL
+    implementation(libs.coil.compose)
 }
