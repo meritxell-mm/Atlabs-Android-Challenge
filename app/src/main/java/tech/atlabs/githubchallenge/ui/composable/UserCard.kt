@@ -27,11 +27,12 @@ import tech.atlabs.githubchallenge.data.entity.User
 
 
 @Composable
-fun UserCard(user: User) {
+fun UserCard(user: User, onUserClick: (String) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp), //TODO REVISAR DIMENS
+        onClick = { onUserClick(user.login) },
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {

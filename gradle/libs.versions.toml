@@ -24,6 +24,7 @@ lifecycleViewmodelCompose = "2.8.7"
 moshi = "1.15.2"
 moshiKotlin = "1.15.2"
 moshiKotlinCodegen = "1.15.1"
+navigationCompose = "2.8.9"
 retrofit = "2.11.0"
 hilt-navigation-compose = "1.2.0"
 hiltAndroid = "2.56"
@@ -32,6 +33,7 @@ uiTestJunit4Android = "1.7.8"
 
 [libraries]
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }

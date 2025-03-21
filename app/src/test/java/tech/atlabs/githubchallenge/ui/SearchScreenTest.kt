@@ -7,6 +7,7 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Rule
 import org.junit.Test
+import tech.atlabs.githubchallenge.ui.navigation.NavScreenRoute
 import tech.atlabs.githubchallenge.ui.screen.SearchScreen
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 
@@ -20,7 +21,10 @@ fun testSearchScreen() {
     val searchQuery = "testUser"
 
     composeTestRule.setContent {
-        SearchScreen(viewModel = mockViewModel)
+        SearchScreen(viewModel = mockViewModel, onClick = { user ->
+            navController.currentBackStackEntry?.savedStateHandle?.set("selectedUser", user)
+            navController.navigate(NavScreenRoute.UserDetail.route)
+        })
     }
 
     composeTestRule.onNodeWithText("Search").performClick() // Simula la cerca

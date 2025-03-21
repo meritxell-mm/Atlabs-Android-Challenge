@@ -22,7 +22,7 @@ import tech.atlabs.githubchallenge.ui.composable.UserCard
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 
 @Composable
-fun SearchScreen(viewModel: UserViewModel) {
+fun SearchScreen(viewModel: UserViewModel, onUserClick: (String) -> Unit) {
 
     val user by viewModel.user.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
@@ -50,7 +50,7 @@ fun SearchScreen(viewModel: UserViewModel) {
             )
 
             user?.let {
-                UserCard(it)
+                UserCard(it, onUserClick)
             }
         }
     }

@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.activity.compose)
     // Optional - Integration with ViewModels
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
 
     // Android Studio Preview support
     implementation(libs.ui.tooling.preview)

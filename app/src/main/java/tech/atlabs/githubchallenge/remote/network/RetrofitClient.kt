@@ -10,7 +10,7 @@ object RetrofitClient {
 
     internal const val BASE_URL = "https://api.github.com/"
 
-    val retrofit: Retrofit by lazy {
+    val retrofit: Retrofit by lazy { //TODO authenticated requests
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
