@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +23,7 @@ class UserViewModel @Inject constructor(
 
     fun getUser(username: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            _user.value = userRepository.getUser(username)
+            _user.value = userRepository.getUser(username) //TODO control de errors (empty, bad request...)
         }
     }
 

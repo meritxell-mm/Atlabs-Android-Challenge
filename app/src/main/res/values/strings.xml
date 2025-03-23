@@ -7,7 +7,7 @@
     <string name="user_info_no_name">No name available</string>
     <string name="user_avatar">Avatar</string>
     <string name="user_card_no_login">No username available</string>
-    <string name="user_info_repositories">Repositories</string>
+    <string name="user_info_repos">Repositories</string>
     <string name="user_info_followers">Followers</string>
     <string name="user_info_following">Following</string>
     <string name="user_info_location">Location</string>
@@ -17,5 +17,12 @@
     <string name="repo_info_forks">Forks</string>
     <string name="repo_info_language">Language</string>
     <string name="repo_info_link">Link</string>
+    <string name="user_info_joined">"Joined %1$s"</string>
+    <string name="user_info_email">Email</string>
+    <string name="user_info_twitter">X</string>
+    <string name="repo_info_forked_from">Forked from %1$s</string>
+    <string name="repo_info_private">Private</string>
+    <string name="repo_info_public">Public</string>
+    <string name="repo_info_empty">No repositories found.</string>
 
 </resources>

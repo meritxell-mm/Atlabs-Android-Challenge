@@ -14,9 +14,9 @@ import androidx.compose.ui.res.colorResource
 import tech.atlabs.githubchallenge.R
 
 private val LightColors = lightColorScheme(
-    primary = GitHubBlueColor,
+    primary = GitHubGreyColor,
     secondary = GitHubBlueBkgColor,
-    background = GitHubGrayBkgColor,
+    background = GitHubBkgColor,
     surface = GitHubSurfaceColor
 )
 
@@ -26,7 +26,7 @@ private val DarkColors = darkColorScheme(
 )
 
 @Composable
-fun GitHubChallengeTheme( //TODO review light/dark and portrait/landscape
+fun GitHubChallengeTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

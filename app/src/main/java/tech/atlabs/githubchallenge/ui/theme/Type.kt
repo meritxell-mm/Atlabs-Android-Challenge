@@ -7,7 +7,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-//TODO review (sobretot colors dark/light theme)
 val GitHubChallengeTypography = Typography(
         bodyLarge = TextStyle(
                 fontWeight = FontWeight.Normal,

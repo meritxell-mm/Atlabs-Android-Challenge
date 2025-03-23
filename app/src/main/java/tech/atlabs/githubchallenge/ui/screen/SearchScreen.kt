@@ -1,10 +1,11 @@
 package tech.atlabs.githubchallenge.ui.screen
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,39 +17,45 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
-import tech.atlabs.githubchallenge.ui.composable.Header
 import tech.atlabs.githubchallenge.ui.composable.SearchBar
 import tech.atlabs.githubchallenge.ui.composable.UserCard
+import tech.atlabs.githubchallenge.ui.theme.GitHubChallengeTypography
+import tech.atlabs.githubchallenge.ui.theme.GitHubTitleColor
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 
 @Composable
 fun SearchScreen(viewModel: UserViewModel, onUserClick: (String) -> Unit) {
 
-    //TODO offline
-
     val user by viewModel.user.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(20.dp)
     ) {
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 40.dp),
+            text = stringResource(R.string.search_title),
+            style = GitHubChallengeTypography.titleLarge,
+            color = GitHubTitleColor
+        )
 
-        Header(stringResource(R.string.search_title))
-
-        Column {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
             SearchBar(
                 searchQuery = searchQuery,
                 onQueryChanged = { query ->
-                    searchQuery = query
+                    searchQuery = query.trim()
                 },
                 onSearch = {
                     viewModel.getUser(searchQuery)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 95.dp)
-                    .padding(25.dp)
             )
 
             user?.let {

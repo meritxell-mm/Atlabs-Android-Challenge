@@ -2,6 +2,7 @@ package tech.atlabs.githubchallenge.data.entity
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import tech.atlabs.githubchallenge.ui.utils.toFormattedDate
 
 /* The basic personal information required will be the avatar,
 first and last name of the github user, username and biography.*/
@@ -37,4 +38,8 @@ data class User(
     @Json(name = "created_at") val createdAt: String,
     @Json(name = "updated_at") val updatedAt: String,
     val repos: List<Repo>?
-)
+) {
+    fun createdAtFormatted(): String {
+        return createdAt.toFormattedDate()
+    }
+}
