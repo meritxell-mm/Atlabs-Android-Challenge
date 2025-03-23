@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -10,6 +12,9 @@ android {
     namespace = "tech.atlabs.githubchallenge"
     compileSdk = 35
 
+    buildFeatures {
+        buildConfig = true
+    }
     defaultConfig {
         applicationId = "tech.atlabs.githubchallenge"
         minSdk = 30
@@ -21,6 +26,10 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").reader())
+        buildConfigField("String", "GITHUB_TOKEN", properties.getProperty("GITHUB_TOKEN"))
     }
 
     buildTypes {
@@ -72,10 +81,9 @@ dependencies {
     debugImplementation(libs.ui.tooling)
 
     //TESTING
-    implementation(libs.androidx.ui.test.junit4.android)
-    androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
     // UI Tests //TODO?
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     testImplementation("io.mockk:mockk:1.13.2")

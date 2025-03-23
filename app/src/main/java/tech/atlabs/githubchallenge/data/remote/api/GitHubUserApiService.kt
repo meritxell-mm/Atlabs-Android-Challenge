@@ -1,6 +1,7 @@
 package tech.atlabs.githubchallenge.data.remote.api
 
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Path
 import tech.atlabs.githubchallenge.data.entity.Repo
 import tech.atlabs.githubchallenge.data.entity.User
