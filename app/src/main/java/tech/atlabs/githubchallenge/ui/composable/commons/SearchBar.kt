@@ -47,14 +47,14 @@ fun SearchBar(
             )
         },
         colors = TextFieldDefaults.colors(
-            focusedContainerColor = Color.White,
-            focusedTextColor = Color.Black,
-            unfocusedContainerColor = Color.White,
-            unfocusedTextColor = Color.Black,
+            focusedContainerColor = MaterialTheme.colorScheme.background,
+            focusedTextColor = MaterialTheme.colorScheme.primary,
+            unfocusedContainerColor = MaterialTheme.colorScheme.background,
+            unfocusedTextColor = MaterialTheme.colorScheme.primary,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent,
-            cursorColor = Color.Black,
+            cursorColor = MaterialTheme.colorScheme.primary,
         )
     )
 }

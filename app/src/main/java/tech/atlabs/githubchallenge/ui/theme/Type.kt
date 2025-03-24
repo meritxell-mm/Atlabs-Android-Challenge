@@ -5,7 +5,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-fun appType(isDark: Boolean): Typography {
+fun appType(isDark: Boolean, isLandscape: Boolean): Typography {
     val titleColor = if (isDark) AppTitleColorDark else AppTitleColor
     val textColor = if (isDark) AppTextColorDark else AppTextColor
 
@@ -27,7 +27,7 @@ fun appType(isDark: Boolean): Typography {
         ),
         titleLarge = TextStyle(
             fontWeight = FontWeight.Bold,
-            fontSize = 30.sp,
+            fontSize = if (isLandscape) 20.sp else 30.sp,
             color = titleColor
         ),
         titleMedium = TextStyle(

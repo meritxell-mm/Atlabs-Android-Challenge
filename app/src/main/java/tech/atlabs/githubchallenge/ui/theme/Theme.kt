@@ -1,5 +1,6 @@
 package tech.atlabs.githubchallenge.ui.theme
 
+import android.content.res.Configuration
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -7,20 +8,25 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColors = lightColorScheme(
     primary = AppGreyColor,
     background = AppBkgColor,
+    surface = AppSurfaceColor
 )
 
 private val DarkColors = darkColorScheme(
+    primary = AppGreyColorDark,
     background = AppBkgColorDark,
+    surface = AppSurfaceColorDark
 )
 
 @Composable
 fun AppTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
+    isLandscape: Boolean = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE,
     content: @Composable () -> Unit
 ) {
 
@@ -30,7 +36,7 @@ fun AppTheme(
 
     MaterialTheme(
         colorScheme = colors,
-        typography = appType(useDarkTheme),
+        typography = appType(isDark = useDarkTheme, isLandscape = isLandscape),
         content = content
     )
 }
@@ -55,7 +61,7 @@ private fun SetStatusBarColor(useDarkTheme: Boolean) {
         )
     } else {
         systemUiController.setSystemBarsColor(
-            color = AppGrayLightColor, darkIcons = true
+            color = AppSurfaceColor, darkIcons = true
         )
     }
 }

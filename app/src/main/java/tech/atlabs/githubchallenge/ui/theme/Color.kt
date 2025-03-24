@@ -4,17 +4,19 @@ import androidx.compose.ui.graphics.Color
 
 //app colors
 val AppGreyColor = Color(0xFF69727D)
-val AppGrayLightColor = Color(0xFFF0F2F3)
+val AppSurfaceColor = Color(0xFFF0F2F3)
 val AppBlueColor = Color(0xFF317BE0)
 val AppBkgColor = Color.White
-val AppBkgColorDark = Color(0xFF1F2328)
-val AppSurfaceColorDark = Color(0xFF69727D)
+//dark
+val AppGreyColorDark = Color(0xFFD6D9DC)
+val AppBkgColorDark = Color(0xFF303539)
+val AppSurfaceColorDark = Color(0xFF535B62)
 
 val AppTitleColor = Color(0xFF1F2328)
 val AppTextColor = Color(0xFF69727D)
-
+//dark
 val AppTitleColorDark = Color.White
-val AppTextColorDark = Color(0xFF69727D)
+val AppTextColorDark = Color(0xFFF2F3F4)
 
 
 val AppErrorColor = Color(0xFFDA4C4B)

@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,8 +38,8 @@ fun SearchScreen(viewModel: UserViewModel, onUserClick: (String) -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(30.dp)
+                .padding(dimensionResource(R.dimen.screen_padding)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.search_spaced_items))
         ) {
             SearchScreenTitle()
             SearchBarWithActions(searchQuery, onQueryChanged = { searchQuery = it }, onSearch = {
@@ -56,7 +57,6 @@ private fun SearchScreenTitle() {
             .fillMaxWidth(),
         text = stringResource(R.string.search_title),
         style = MaterialTheme.typography.titleLarge,
-        color = AppTitleColor
     )
 }
 

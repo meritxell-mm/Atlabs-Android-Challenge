@@ -10,6 +10,9 @@
     <string name="icon_twitter">X</string>
     <string name="icon_star">Star</string>
     <string name="icon_fork">Forks</string>
+    <string name="icon_repositories">Repositories</string>
+    <string name="icon_followers">Followers</string>
+    <string name="icon_following">Following</string>
 
     <!-- ERROR MESSAGES -->
     <string name="error_user_not_found">User not found. Type another github username.</string>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="avatar_size">100dp</dimen>
+    <dimen name="screen_padding">20dp</dimen>
+    <dimen name="search_spaced_items">30dp</dimen>
+</resources>

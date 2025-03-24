@@ -11,24 +11,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun IconText(icon: ImageVector, iconDescription:String, value: String, isAvailable: Boolean = true) {
+fun IconText(icon: ImageVector, iconDescription: String, value: String) {
     Row(modifier = Modifier.padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = icon,
             contentDescription = iconDescription,
-            tint = if (isAvailable) Color(0xFF4A5D78) else Color.Gray,
+            tint = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.size(20.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = value,
-            style =  MaterialTheme.typography.bodyMedium,
-            color = if (isAvailable) Color(0xFF4A5D78) else Color.Gray
+            style = MaterialTheme.typography.bodyMedium,
         )
     }
 }

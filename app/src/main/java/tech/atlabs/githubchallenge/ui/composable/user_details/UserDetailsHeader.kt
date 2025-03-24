@@ -19,14 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
 import tech.atlabs.githubchallenge.ui.theme.AppBlueColor
-import tech.atlabs.githubchallenge.ui.theme.AppGrayLightColor
 
 @Composable
 fun UserDetailsHeader(user: User) {
@@ -34,7 +33,7 @@ fun UserDetailsHeader(user: User) {
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = AppGrayLightColor,
+                color = MaterialTheme.colorScheme.surface,
                 shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
             )
             .padding(20.dp)
@@ -62,7 +61,7 @@ private fun UserAvatar(avatarUrl: String) {
         model = avatarUrl,
         contentDescription = stringResource(R.string.user_info_avatar),
         modifier = Modifier
-            .size(100.dp)
+            .size(dimensionResource(R.dimen.avatar_size))
             .border(1.dp, MaterialTheme.colorScheme.primary, CircleShape)
             .clip(CircleShape)
     )
@@ -85,7 +84,6 @@ private fun UserTextInfo(user: User) {
         Text(
             text = stringResource(R.string.user_info_joined, user.createdAtFormatted()),
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.primary
         )
     }
 }
@@ -95,7 +93,6 @@ private fun UserBio(bio: String) {
     Text(
         text = bio,
         style = MaterialTheme.typography.bodyMedium,
-        color = Color.DarkGray,
         modifier = Modifier.fillMaxWidth()
     )
 }
