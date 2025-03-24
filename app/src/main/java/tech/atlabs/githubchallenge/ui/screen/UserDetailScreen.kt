@@ -1,8 +1,12 @@
 package tech.atlabs.githubchallenge.ui.screen
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,6 +25,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
@@ -74,6 +79,7 @@ fun UserDetailSuccess(user: User) {
 
 @Composable
 fun UserDetailSuccessLandscape(user: User) {
+    val context = LocalContext.current
 
     Row(
         modifier = Modifier.fillMaxWidth()
@@ -84,11 +90,16 @@ fun UserDetailSuccessLandscape(user: User) {
                 .padding(start = 20.dp, end = 10.dp)
         ) {
             item {
-                UserDetailsHeader(user = user)
+                Box(modifier = Modifier.clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.htmlUrl))
+                    context.startActivity(intent)
+                }) {
+                    UserDetailsHeader(user = user)
+                }
                 Spacer(modifier = Modifier.height(2.dp))
                 UserDetailsStats(user)
                 Spacer(modifier = Modifier.height(12.dp))
-                UserDetailsExtraInfo(getExtraItems(user=user))
+                UserDetailsExtraInfo(getExtraItems(user = user))
                 Spacer(modifier = Modifier.height(12.dp))
             }
         }
@@ -127,35 +138,41 @@ fun UserDetailSuccessLandscape(user: User) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun UserDetailSuccessPortrait(user: User) {
-     LazyColumn(
-         modifier = Modifier
-             .fillMaxSize()
-             .background(MaterialTheme.colorScheme.background)
-     ) {
-         stickyHeader {
-             UserDetailsHeader(user = user)
-         }
+    val context = LocalContext.current
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        stickyHeader {
+            Box(modifier = Modifier.clickable {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.htmlUrl))
+                context.startActivity(intent)
+            }) {
+                UserDetailsHeader(user = user)
+            }
+        }
 
-         item {
-             Spacer(modifier = Modifier.height(12.dp))
-             UserDetailsStats(user)
-             Spacer(modifier = Modifier.height(12.dp))
-             UserDetailsExtraInfo(getExtraItems(user=user))
-             Spacer(modifier = Modifier.height(12.dp))
-             Text(
-                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
-                 text = stringResource(R.string.user_info_repos),
-                 style = MaterialTheme.typography.titleMedium
-             )
-         }
+        item {
+            Spacer(modifier = Modifier.height(12.dp))
+            UserDetailsStats(user)
+            Spacer(modifier = Modifier.height(12.dp))
+            UserDetailsExtraInfo(getExtraItems(user = user))
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                text = stringResource(R.string.user_info_repos),
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
 
-         user.repos?.takeIf { repos -> repos.isNotEmpty() }?.let { reposList ->
-             items(reposList) { repo ->
-                 RepoCard(repo)
-             }
-             item {
-                 Spacer(modifier = Modifier.height(16.dp))
-             }
-         }
-     }
+        user.repos?.takeIf { repos -> repos.isNotEmpty() }?.let { reposList ->
+            items(reposList) { repo ->
+                RepoCard(repo)
+            }
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+    }
 }
