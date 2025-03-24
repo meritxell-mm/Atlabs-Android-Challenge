@@ -1,7 +1,10 @@
 package tech.atlabs.githubchallenge.ui.composable
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,6 +37,7 @@ import tech.atlabs.githubchallenge.ui.utils.ProgrammingLangColor
 
 @Composable
 fun RepoCard(repo: Repo) {
+    val context = LocalContext.current
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,7 +46,10 @@ fun RepoCard(repo: Repo) {
                 width = 1.dp,
                 color = MaterialTheme.colorScheme.primary,
                 shape = MaterialTheme.shapes.medium
-            ), colors = CardDefaults.cardColors(
+            ).clickable(onClick = {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(repo.htmlUrl))
+                context.startActivity(intent)
+            }), colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background
         )
     ) {
