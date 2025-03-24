@@ -34,7 +34,7 @@ import tech.atlabs.githubchallenge.ui.composable.RepoCard
 import tech.atlabs.githubchallenge.ui.composable.commons.CustomLoadingIndicator
 import tech.atlabs.githubchallenge.ui.composable.commons.ErrorCard
 import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsExtraInfo
-import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsHeader
+import tech.atlabs.githubchallenge.ui.composable.user_details.header.UserDetailsHeader
 import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsStats
 import tech.atlabs.githubchallenge.ui.composable.user_details.getExtraItems
 import tech.atlabs.githubchallenge.ui.utils.UiState
