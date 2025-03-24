@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import tech.atlabs.githubchallenge.data.entity.User
+import tech.atlabs.githubchallenge.domain.model.User
 
 @Composable
 fun UserDetailsHeaderParallax (scrollState: LazyListState, user: User) {

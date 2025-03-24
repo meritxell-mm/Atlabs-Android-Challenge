@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CallSplit
 import androidx.compose.material.icons.filled.Star
@@ -23,16 +22,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
-import tech.atlabs.githubchallenge.data.entity.Repo
-import tech.atlabs.githubchallenge.ui.theme.GitHubBkgColor
-import tech.atlabs.githubchallenge.ui.theme.GitHubBlueColor
-import tech.atlabs.githubchallenge.ui.theme.GitHubChallengeTypography
-import tech.atlabs.githubchallenge.ui.theme.GitHubGreyColor
+import tech.atlabs.githubchallenge.domain.model.Repo
+import tech.atlabs.githubchallenge.ui.composable.commons.IconText
+import tech.atlabs.githubchallenge.ui.theme.AppBlueColor
+import tech.atlabs.githubchallenge.ui.utils.ProgrammingLangColor
 
 @Composable
 fun RepoCard(repo: Repo) {
@@ -42,10 +39,10 @@ fun RepoCard(repo: Repo) {
             .padding(horizontal = 16.dp, vertical = 5.dp)
             .border(
                 width = 1.dp,
-                color = GitHubGreyColor,
+                color = MaterialTheme.colorScheme.primary,
                 shape = MaterialTheme.shapes.medium
             ), colors = CardDefaults.cardColors(
-            containerColor = GitHubBkgColor
+            containerColor = MaterialTheme.colorScheme.background
         )
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -53,9 +50,9 @@ fun RepoCard(repo: Repo) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = repo.name,
-                    style = GitHubChallengeTypography.titleMedium.copy(
+                    style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        color = GitHubBlueColor
+                        color = AppBlueColor
                     )
                 )
 
@@ -65,16 +62,17 @@ fun RepoCard(repo: Repo) {
                     modifier = Modifier
                         .border(
                             width = 1.dp,
-                            color = GitHubGreyColor,
+                            color = MaterialTheme.colorScheme.primary,
                             shape = MaterialTheme.shapes.medium
-                        ).padding(horizontal = 8.dp, vertical = 4.dp)
+                        )
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     Text(
                         text = if (repo.private) stringResource(R.string.repo_info_private) else stringResource(
                             R.string.repo_info_public
                         ),
-                        style = GitHubChallengeTypography.labelSmall,
-                        color = GitHubGreyColor
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -82,8 +80,8 @@ fun RepoCard(repo: Repo) {
             repo.fullName?.let {
                 Text(
                     text = stringResource(R.string.repo_info_forked_from, it),
-                    style = GitHubChallengeTypography.bodySmall,
-                    color = GitHubGreyColor,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
@@ -91,7 +89,7 @@ fun RepoCard(repo: Repo) {
             repo.description?.let {
                 Text(
                     text = it,
-                    style = GitHubChallengeTypography.bodyMedium,
+                    style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 8.dp)
                 )
             }
@@ -104,25 +102,25 @@ fun RepoCard(repo: Repo) {
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 repo.language?.let {
-                    LanguageBadge(language = it)
+                    LanguageBadge(languageName = it)
                 }
 
                 IconText(
                     Icons.Default.Star,
-                    stringResource(R.string.repo_info_stargazers),
+                    stringResource(R.string.icon_star),
                     repo.stargazersCount.toString()
                 )
                 IconText(
                     Icons.Default.CallSplit,
-                    stringResource(R.string.repo_info_forks),
+                    stringResource(R.string.icon_fork),
                     repo.forksCount.toString()
                 )
             }
 
             Text(
                 text = repo.htmlUrl,
-                style = GitHubChallengeTypography.bodySmall,
-                color = GitHubBlueColor,
+                style = MaterialTheme.typography.bodySmall,
+                color = AppBlueColor,
                 modifier = Modifier.padding(top = 12.dp)
             )
         }
@@ -130,14 +128,9 @@ fun RepoCard(repo: Repo) {
 }
 
 @Composable
-fun LanguageBadge(language: String) {
-    val color = when (language.lowercase()) {
-        "shell" -> Color(0xFF89E051)
-        "python" -> Color(0xFF3572A5)
-        "html" -> Color(0xFFE34C26)
-        "javascript" -> Color(0xFFF1E05A)
-        else -> GitHubGreyColor
-    }
+fun LanguageBadge(languageName: String) {
+    val language = ProgrammingLangColor.fromName(languageName)
+    val color = language?.color ?: MaterialTheme.colorScheme.primary
 
     Row(verticalAlignment = Alignment.CenterVertically) {
         Box(
@@ -147,8 +140,8 @@ fun LanguageBadge(language: String) {
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
-            text = language,
-            style = GitHubChallengeTypography.bodySmall
+            text = languageName,
+            style = MaterialTheme.typography.bodySmall
         )
     }
 }

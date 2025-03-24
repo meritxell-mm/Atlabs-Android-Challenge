@@ -1,45 +1,61 @@
 package tech.atlabs.githubchallenge.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
-import tech.atlabs.githubchallenge.R
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColors = lightColorScheme(
-    primary = GitHubGreyColor,
-    secondary = GitHubBlueBkgColor,
-    background = GitHubBkgColor,
-    surface = GitHubSurfaceColor
+    primary = AppGreyColor,
+    background = AppBkgColor,
 )
 
 private val DarkColors = darkColorScheme(
-    background = GitHubBkgColorDark,
-    surface = GitHubSurfaceColorDark
+    background = AppBkgColorDark,
 )
 
 @Composable
-fun GitHubChallengeTheme(
+fun AppTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
 
+    SetStatusBarColor(useDarkTheme)
+
+    val colors = setThemeColors(useDarkTheme)
+
+    MaterialTheme(
+        colorScheme = colors,
+        typography = appType(useDarkTheme),
+        content = content
+    )
+}
+
+@Composable
+private fun setThemeColors(useDarkTheme: Boolean): ColorScheme {
     val colors = if (!useDarkTheme) {
         LightColors
     } else {
         DarkColors
     }
+    return colors
+}
 
-    MaterialTheme(
-        colorScheme = colors,
-        typography = GitHubChallengeTypography,
-        content = content
-    )
+@Composable
+private fun SetStatusBarColor(useDarkTheme: Boolean) {
+    val systemUiController = rememberSystemUiController()
+    if (useDarkTheme) {
+        systemUiController.setSystemBarsColor(
+            color = Color.Transparent,
+            darkIcons = false
+        )
+    } else {
+        systemUiController.setSystemBarsColor(
+            color = AppGrayLightColor, darkIcons = true
+        )
+    }
 }

@@ -17,7 +17,7 @@ android {
     }
     defaultConfig {
         applicationId = "tech.atlabs.githubchallenge"
-        minSdk = 30
+        minSdk = 31
         targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
@@ -103,4 +103,8 @@ dependencies {
 
     //COIL
     implementation(libs.coil.compose)
+
+    //Status bar
+    implementation(libs.accompanist.systemuicontroller)
+
 }

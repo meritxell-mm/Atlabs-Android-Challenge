@@ -7,14 +7,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
 import tech.atlabs.githubchallenge.ui.navigation.NavGraph
-import tech.atlabs.githubchallenge.ui.theme.GitHubChallengeTheme
+import tech.atlabs.githubchallenge.ui.theme.AppTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GitHubChallengeTheme {
+            AppTheme {
                 NavGraph()
             }
         }
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun MainActivityPreview() { //TODO previews
-    GitHubChallengeTheme {
+    AppTheme {
         NavGraph()
     }
 }

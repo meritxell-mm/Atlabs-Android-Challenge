@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -17,52 +18,79 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
-import tech.atlabs.githubchallenge.ui.composable.SearchBar
+import tech.atlabs.githubchallenge.domain.model.User
 import tech.atlabs.githubchallenge.ui.composable.UserCard
-import tech.atlabs.githubchallenge.ui.theme.GitHubChallengeTypography
-import tech.atlabs.githubchallenge.ui.theme.GitHubTitleColor
+import tech.atlabs.githubchallenge.ui.composable.commons.CustomLoadingIndicator
+import tech.atlabs.githubchallenge.ui.composable.commons.ErrorCard
+import tech.atlabs.githubchallenge.ui.composable.commons.SearchBar
+import tech.atlabs.githubchallenge.ui.theme.AppTitleColor
+import tech.atlabs.githubchallenge.ui.utils.UiState
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 
 @Composable
 fun SearchScreen(viewModel: UserViewModel, onUserClick: (String) -> Unit) {
 
-    val user by viewModel.user.collectAsState()
+    val userState by viewModel.userState.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp)
-    ) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 40.dp),
-            text = stringResource(R.string.search_title),
-            style = GitHubChallengeTypography.titleLarge,
-            color = GitHubTitleColor
-        )
-
+    BaseScreen {
         Column(
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(30.dp)
         ) {
-            SearchBar(
-                searchQuery = searchQuery,
-                onQueryChanged = { query ->
-                    searchQuery = query.trim()
-                },
-                onSearch = {
-                    viewModel.getUser(searchQuery)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-
-            user?.let {
-                UserCard(it, onUserClick)
-            }
+            SearchScreenTitle()
+            SearchBarWithActions(searchQuery, onQueryChanged = { searchQuery = it }, onSearch = {
+                viewModel.getUser(searchQuery)
+            })
+            SearchScreenContent(userState, onUserClick) { viewModel.getUser(searchQuery) }
         }
     }
+}
+
+@Composable
+private fun SearchScreenTitle() {
+    Text(
+        modifier = Modifier
+            .fillMaxWidth(),
+        text = stringResource(R.string.search_title),
+        style = MaterialTheme.typography.titleLarge,
+        color = AppTitleColor
+    )
+}
+
+@Composable
+private fun SearchBarWithActions(
+    searchQuery: String,
+    onQueryChanged: (String) -> Unit,
+    onSearch: () -> Unit
+) {
+    SearchBar(
+        searchQuery = searchQuery,
+        onQueryChanged = onQueryChanged,
+        onSearch = onSearch,
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+@Composable
+private fun SearchScreenContent(
+    userState: UiState<User>,
+    onUserClick: (String) -> Unit,
+    onRetry: () -> Unit
+) {
+    when (userState) {
+        is UiState.Idle -> {}
+        is UiState.Loading -> CustomLoadingIndicator()
+        is UiState.Success -> SearchSuccessState(userState.data, onUserClick)
+        is UiState.Error -> ErrorCard(userState.message, onRetry = onRetry)
+    }
+}
+
+@Composable
+private fun SearchSuccessState(user: User, onUserClick: (String) -> Unit) {
+    UserCard(user = user, onUserClick = onUserClick)
 }
 
 @Composable

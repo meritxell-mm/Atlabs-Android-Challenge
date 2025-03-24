@@ -1,5 +1,6 @@
-package tech.atlabs.githubchallenge.ui.composable
+package tech.atlabs.githubchallenge.ui.composable.commons
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -35,8 +36,9 @@ fun SearchBar(
             onDone = { onSearch() },
         ),
         modifier = modifier
-            .shadow(elevation = 8.dp, shape = MaterialTheme.shapes.extraLarge)
-            .clip(MaterialTheme.shapes.extraLarge),
+            .shadow(elevation = 4.dp, shape = MaterialTheme.shapes.extraLarge)
+            .clip(MaterialTheme.shapes.extraLarge)
+            .background(MaterialTheme.colorScheme.background),
         placeholder = { Text(text = stringResource(R.string.search_placeholder)) },
         leadingIcon = {
             Icon(

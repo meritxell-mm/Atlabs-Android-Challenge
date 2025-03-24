@@ -12,10 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
-import tech.atlabs.githubchallenge.data.entity.User
-import tech.atlabs.githubchallenge.ui.composable.StatColumn
-import tech.atlabs.githubchallenge.ui.theme.GitHubBkgColor
-import tech.atlabs.githubchallenge.ui.theme.GitHubGreyColor
+import tech.atlabs.githubchallenge.domain.model.User
+import tech.atlabs.githubchallenge.ui.composable.commons.StatColumn
+import tech.atlabs.githubchallenge.ui.theme.AppBkgColor
+import tech.atlabs.githubchallenge.ui.theme.AppGreyColor
 
 @Composable
 fun UserDetailsStats(user: User) {
@@ -27,10 +27,10 @@ fun UserDetailsStats(user: User) {
             .padding(horizontal = 16.dp)
             .border(
                 width = 1.dp,
-                color = GitHubGreyColor,
+                color = MaterialTheme.colorScheme.primary,
                 shape = MaterialTheme.shapes.medium
             )
-            .background(GitHubBkgColor, shape = MaterialTheme.shapes.medium)
+            .background(MaterialTheme.colorScheme.background, shape = MaterialTheme.shapes.medium)
             .padding(12.dp)
     ) {
         StatColumn(

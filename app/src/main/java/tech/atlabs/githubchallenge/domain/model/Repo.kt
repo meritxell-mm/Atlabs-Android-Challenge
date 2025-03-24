@@ -1,4 +1,4 @@
-package tech.atlabs.githubchallenge.data.entity
+package tech.atlabs.githubchallenge.domain.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

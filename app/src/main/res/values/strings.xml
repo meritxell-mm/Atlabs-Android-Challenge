@@ -1,25 +1,41 @@
 <resources>
     <string name="app_name">Atlabs Github Challenge</string>
 
+    <!-- ICON DESCRIPTION -->
+    <string name="icon_search">Search</string>
+    <string name="icon_location">Location</string>
+    <string name="icon_blog">Blog</string>
+    <string name="icon_company">Company</string>
+    <string name="icon_email">Email</string>
+    <string name="icon_twitter">X</string>
+    <string name="icon_star">Star</string>
+    <string name="icon_fork">Forks</string>
+
+    <!-- ERROR MESSAGES -->
+    <string name="error_user_not_found">User not found. Type another github username.</string>
+    <string name="error_network">Network error. Please, check your internet connexion.</string>
+    <string name="error_unknown">An unknown error occurred.</string>
+    <string name="error_timeout">The request timed out. Please try again later.</string>
+    <string name="error_access_denied">Access denied to the server. You may have exceeded the request limit.</string>
+    <string name="error_not_authorized">You are not authorized to connect to the server.</string>
+    <string name="error_bad_request">The request is not in the correct format.</string>
+    <string name="error_server">Failed to connect to the server correctly.</string>
+    <string name="error_btn_retry">RETRY</string>
+
+    <!-- SEARCH SCREEN -->
     <string name="search_title">Github User Finder</string>
     <string name="search_placeholder">Type a github username</string>
-    <string name="icon_search">Search</string>
+
+    <!-- USER INFO -->
+    <string name="user_info_no_username">No username available</string>
     <string name="user_info_no_name">No name available</string>
-    <string name="user_avatar">Avatar</string>
-    <string name="user_card_no_login">No username available</string>
+    <string name="user_info_avatar">Avatar</string>
     <string name="user_info_repos">Repositories</string>
     <string name="user_info_followers">Followers</string>
     <string name="user_info_following">Following</string>
-    <string name="user_info_location">Location</string>
-    <string name="user_info_blog">Blog</string>
-    <string name="user_info_company">Company</string>
-    <string name="repo_info_stargazers">Stargazers</string>
-    <string name="repo_info_forks">Forks</string>
-    <string name="repo_info_language">Language</string>
-    <string name="repo_info_link">Link</string>
     <string name="user_info_joined">"Joined %1$s"</string>
-    <string name="user_info_email">Email</string>
-    <string name="user_info_twitter">X</string>
+
+    <!-- REPO INFO -->
     <string name="repo_info_forked_from">Forked from %1$s</string>
     <string name="repo_info_private">Private</string>
     <string name="repo_info_public">Public</string>

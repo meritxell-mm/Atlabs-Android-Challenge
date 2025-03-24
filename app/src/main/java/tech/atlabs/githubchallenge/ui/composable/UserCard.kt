@@ -7,10 +7,9 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import tech.atlabs.githubchallenge.data.entity.User
+import tech.atlabs.githubchallenge.domain.model.User
 import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetails
-import tech.atlabs.githubchallenge.ui.theme.GitHubBkgColor
-import tech.atlabs.githubchallenge.ui.theme.GitHubGrayBkgColor
+import tech.atlabs.githubchallenge.ui.theme.AppGrayLightColor
 
 
 @Composable
@@ -21,7 +20,7 @@ fun UserCard(user: User, onUserClick: (String) -> Unit) {
         onClick = { onUserClick(user.login) },
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = GitHubGrayBkgColor)
+        colors = CardDefaults.cardColors(containerColor = AppGrayLightColor)
     ) {
         UserDetails(user)
     }
