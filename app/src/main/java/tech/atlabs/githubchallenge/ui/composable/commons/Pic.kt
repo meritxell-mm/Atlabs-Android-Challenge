@@ -1,4 +1,4 @@
-package tech.atlabs.githubchallenge.ui.composable.user_details.header
+package tech.atlabs.githubchallenge.ui.composable.commons
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -27,7 +27,7 @@ import coil.compose.AsyncImage
 import tech.atlabs.githubchallenge.R
 
 @Composable
-fun UserAvatar(avatarUrl: String) {
+fun Pic(avatarUrl: String) {
     var showDialog by remember { mutableStateOf(false) }
 
     AsyncImage(
@@ -41,14 +41,14 @@ fun UserAvatar(avatarUrl: String) {
     )
 
     if (showDialog) {
-        AvatarDialog(avatarUrl = avatarUrl) {
+        PicFullScreen(avatarUrl = avatarUrl) {
             showDialog = false
         }
     }
 }
 
 @Composable
-private fun AvatarDialog(avatarUrl: String, onDismiss: () -> Unit) {
+private fun PicFullScreen(avatarUrl: String, onDismiss: () -> Unit) {
     Dialog(onDismissRequest = onDismiss) {
         Box(
             modifier = Modifier

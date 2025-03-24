@@ -1,4 +1,4 @@
-package tech.atlabs.githubchallenge.ui.composable
+package tech.atlabs.githubchallenge.ui.composable.user
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -19,10 +19,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.domain.model.User
-import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsExtraInfo
-import tech.atlabs.githubchallenge.ui.composable.user_details.header.UserDetailsHeader
-import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsStats
-import tech.atlabs.githubchallenge.ui.composable.user_details.getExtraItems
+import tech.atlabs.githubchallenge.ui.composable.user.details.UserDetailsExtraInfo
+import tech.atlabs.githubchallenge.ui.composable.user.details.UserDetailsStats
+import tech.atlabs.githubchallenge.ui.composable.user.details.getExtraItems
+import tech.atlabs.githubchallenge.ui.composable.user.details.header.UserDetailsHeader
 
 
 @Composable

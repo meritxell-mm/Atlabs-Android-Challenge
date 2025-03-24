@@ -1,4 +1,4 @@
-package tech.atlabs.githubchallenge.ui.composable.user_details
+package tech.atlabs.githubchallenge.ui.composable.user.details
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background

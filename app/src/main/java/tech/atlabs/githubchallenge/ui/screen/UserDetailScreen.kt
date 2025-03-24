@@ -30,13 +30,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
-import tech.atlabs.githubchallenge.ui.composable.RepoCard
+import tech.atlabs.githubchallenge.ui.composable.repo.RepoCard
 import tech.atlabs.githubchallenge.ui.composable.commons.CustomLoadingIndicator
 import tech.atlabs.githubchallenge.ui.composable.commons.ErrorCard
-import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsExtraInfo
-import tech.atlabs.githubchallenge.ui.composable.user_details.header.UserDetailsHeader
-import tech.atlabs.githubchallenge.ui.composable.user_details.UserDetailsStats
-import tech.atlabs.githubchallenge.ui.composable.user_details.getExtraItems
+import tech.atlabs.githubchallenge.ui.composable.user.details.UserDetailsExtraInfo
+import tech.atlabs.githubchallenge.ui.composable.user.details.header.UserDetailsHeader
+import tech.atlabs.githubchallenge.ui.composable.user.details.UserDetailsStats
+import tech.atlabs.githubchallenge.ui.composable.user.details.getExtraItems
 import tech.atlabs.githubchallenge.ui.utils.UiState
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 

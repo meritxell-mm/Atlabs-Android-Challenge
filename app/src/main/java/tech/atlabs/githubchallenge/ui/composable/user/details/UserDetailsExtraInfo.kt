@@ -1,4 +1,4 @@
-package tech.atlabs.githubchallenge.ui.composable.user_details
+package tech.atlabs.githubchallenge.ui.composable.user.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -17,14 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
-import tech.atlabs.githubchallenge.ui.composable.UserCard
+import tech.atlabs.githubchallenge.ui.composable.user.UserCard
 import tech.atlabs.githubchallenge.ui.composable.commons.CustomLoadingIndicator
 import tech.atlabs.githubchallenge.ui.composable.commons.ErrorCard
 import tech.atlabs.githubchallenge.ui.composable.commons.SearchBar
-import tech.atlabs.githubchallenge.ui.theme.AppTitleColor
 import tech.atlabs.githubchallenge.ui.utils.UiState
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 

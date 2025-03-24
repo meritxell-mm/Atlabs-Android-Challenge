@@ -1,4 +1,4 @@
-package tech.atlabs.githubchallenge.ui.composable.user_details.header
+package tech.atlabs.githubchallenge.ui.composable.user.details.header
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
