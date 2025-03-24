@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -30,18 +31,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
-import tech.atlabs.githubchallenge.ui.composable.repo.RepoCard
-import tech.atlabs.githubchallenge.ui.composable.commons.CustomLoadingIndicator
 import tech.atlabs.githubchallenge.ui.composable.commons.ErrorCard
+import tech.atlabs.githubchallenge.ui.composable.commons.LoadingIndicator
+import tech.atlabs.githubchallenge.ui.composable.repo.ReposList
 import tech.atlabs.githubchallenge.ui.composable.user.details.UserDetailsExtraInfo
-import tech.atlabs.githubchallenge.ui.composable.user.details.header.UserDetailsHeader
 import tech.atlabs.githubchallenge.ui.composable.user.details.UserDetailsStats
 import tech.atlabs.githubchallenge.ui.composable.user.details.getExtraItems
+import tech.atlabs.githubchallenge.ui.composable.user.details.header.UserDetailsHeader
 import tech.atlabs.githubchallenge.ui.utils.UiState
+import tech.atlabs.githubchallenge.ui.utils.addRepos
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 
 @Composable
 fun UserDetailScreen(viewModel: UserViewModel, username: String) {
+
+    val isLoadingMore by viewModel.isLoadingMore.collectAsState()
 
     LaunchedEffect(username) {
         viewModel.getUserWithRepos(username)
@@ -52,33 +56,45 @@ fun UserDetailScreen(viewModel: UserViewModel, username: String) {
     BaseScreen(backgroundColor = MaterialTheme.colorScheme.surface) {
         UserDetailContent(
             userState = userState,
-            onRetry = { viewModel.getUserWithRepos(username) })
+            onRetry = { viewModel.getUserWithRepos(username) },
+            isLoadingMore = isLoadingMore,
+            onLoadMore = { viewModel.loadMoreRepos(username) })
     }
 }
 
 @Composable
-fun UserDetailContent(userState: UiState<User>, onRetry: () -> Unit) {
+fun UserDetailContent(
+    userState: UiState<User>,
+    onRetry: () -> Unit,
+    isLoadingMore: Boolean,
+    onLoadMore: () -> Unit
+) {
     when (userState) {
         is UiState.Idle -> {}
-        is UiState.Loading -> CustomLoadingIndicator()
-        is UiState.Success -> UserDetailSuccess(user = userState.data)
+        is UiState.Loading -> LoadingIndicator()
+        is UiState.Success -> UserDetailSuccess(
+            user = userState.data,
+            isLoadingMore = isLoadingMore,
+            onLoadMore = onLoadMore
+        )
+
         is UiState.Error -> ErrorCard(errorMessage = userState.message, onRetry = onRetry)
     }
 }
 
 @Composable
-fun UserDetailSuccess(user: User) {
+fun UserDetailSuccess(user: User, isLoadingMore: Boolean, onLoadMore: () -> Unit) {
     val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     if (isLandscape) {
-        UserDetailSuccessLandscape(user)
+        UserDetailSuccessLandscape(user, isLoadingMore = isLoadingMore, onLoadMore = onLoadMore)
     } else {
-        UserDetailSuccessPortrait(user)
+        UserDetailSuccessPortrait(user, isLoadingMore = isLoadingMore, onLoadMore = onLoadMore)
     }
 }
 
 @Composable
-fun UserDetailSuccessLandscape(user: User) {
+fun UserDetailSuccessLandscape(user: User, isLoadingMore: Boolean, onLoadMore: () -> Unit) {
     val context = LocalContext.current
 
     Row(
@@ -116,30 +132,29 @@ fun UserDetailSuccessLandscape(user: User) {
                 text = stringResource(R.string.user_info_repos),
                 style = MaterialTheme.typography.titleMedium
             )
-            user.repos?.takeIf { repos -> repos.isNotEmpty() }?.let { reposList ->
-                LazyColumn {
-                    items(reposList) { repo ->
-                        RepoCard(repo)
-                    }
-                    item {
-                        Spacer(modifier = Modifier.height(16.dp))
-                    }
-                }
-            } ?: run {
-                Text(
-                    stringResource(R.string.repo_info_empty),
-                    modifier = Modifier.padding(horizontal = 20.dp),
-                )
-            }
+            ReposList(user = user, isLoadingMore = isLoadingMore, onLoadMore = onLoadMore)
         }
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun UserDetailSuccessPortrait(user: User) {
+fun UserDetailSuccessPortrait(user: User, isLoadingMore: Boolean, onLoadMore: () -> Unit) {
     val context = LocalContext.current
+    val listState = rememberLazyListState()
+
+    LaunchedEffect(listState) {
+        snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }
+            .collect { lastVisible ->
+                val totalItems = listState.layoutInfo.totalItemsCount
+                if (lastVisible != null && lastVisible >= totalItems - 3) {
+                    onLoadMore()
+                }
+            }
+    }
+
     LazyColumn(
+        state = listState,
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
@@ -166,13 +181,7 @@ fun UserDetailSuccessPortrait(user: User) {
             )
         }
 
-        user.repos?.takeIf { repos -> repos.isNotEmpty() }?.let { reposList ->
-            items(reposList) { repo ->
-                RepoCard(repo)
-            }
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-        }
+        addRepos(user, isLoadingMore)
     }
 }
+

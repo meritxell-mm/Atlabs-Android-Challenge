@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
 import tech.atlabs.githubchallenge.ui.composable.user.UserCard
-import tech.atlabs.githubchallenge.ui.composable.commons.CustomLoadingIndicator
+import tech.atlabs.githubchallenge.ui.composable.commons.LoadingIndicator
 import tech.atlabs.githubchallenge.ui.composable.commons.ErrorCard
 import tech.atlabs.githubchallenge.ui.composable.commons.SearchBar
 import tech.atlabs.githubchallenge.ui.utils.UiState
@@ -80,7 +80,7 @@ private fun SearchScreenContent(
 ) {
     when (userState) {
         is UiState.Idle -> {}
-        is UiState.Loading -> CustomLoadingIndicator()
+        is UiState.Loading -> LoadingIndicator()
         is UiState.Success -> SearchSuccessState(userState.data, onUserClick)
         is UiState.Error -> ErrorCard(userState.message, onRetry = onRetry)
     }

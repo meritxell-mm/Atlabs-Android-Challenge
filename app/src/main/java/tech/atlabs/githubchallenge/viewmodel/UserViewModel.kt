@@ -1,5 +1,6 @@
 package tech.atlabs.githubchallenge.viewmodel;
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,11 +21,19 @@ import javax.inject.Inject
 class UserViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val getUserWithReposUseCase: GetUserWithReposUseCase,
+    private val getReposUseCase: GetReposUseCase,
     private val errorHandler: ErrorHandler
 ) : ViewModel() {
 
+    private var currentPage = 1
+    private val perPage = 30
+    private var isLastPage = false
+
     private val _userState = MutableStateFlow<UiState<User>>(UiState.Idle)
     val userState: StateFlow<UiState<User>> = _userState
+
+    private val _isLoadingMore = MutableStateFlow(false)
+    val isLoadingMore: StateFlow<Boolean> = _isLoadingMore
 
     private fun fetchUserData(username: String, useCase: suspend (String) -> Result<User?>) {
         viewModelScope.launch {
@@ -55,5 +64,34 @@ class UserViewModel @Inject constructor(
 
     fun getUserWithRepos( username: String) {
         fetchUserData(username, getUserWithReposUseCase::invoke)
+    }
+
+    fun loadMoreRepos(username: String) {
+        if (_isLoadingMore.value || isLastPage || _userState.value !is UiState.Success) return
+
+        viewModelScope.launch {
+            _isLoadingMore.value = true
+            try {
+                val newRepos = withContext(Dispatchers.IO) {
+                    getReposUseCase(username, page = currentPage + 1, perPage = perPage)
+                }
+
+                val reposList = newRepos.getOrNull()
+                if (!reposList.isNullOrEmpty()) {
+                    currentPage++
+                    val currentUser = (_userState.value as UiState.Success).data
+                    val updatedUser = currentUser.copy(
+                        repos = currentUser.repos.orEmpty() + reposList
+                    )
+                    _userState.value = UiState.Success(updatedUser)
+                } else {
+                    isLastPage = true
+                }
+            } catch (e: Exception) {
+                Log.e("UserViewModel; loadMoreRepos", e.message.toString())
+            } finally {
+                _isLoadingMore.value = false
+            }
+        }
     }
 }

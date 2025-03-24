@@ -7,9 +7,9 @@ import tech.atlabs.githubchallenge.domain.utils.ErrorType
 class GetReposUseCase(
     private val repoRepository: RepoRepository
 ) {
-    suspend operator fun invoke(username: String): Result<List<Repo>> {
+    suspend operator fun invoke(username: String, page: Int, perPage: Int): Result<List<Repo>> {
         return try {
-            val repos = repoRepository.getRepos(username)
+            val repos = repoRepository.getRepos(username, page, perPage)
             if (repos != null) {
                 Result.success(repos)
             } else {

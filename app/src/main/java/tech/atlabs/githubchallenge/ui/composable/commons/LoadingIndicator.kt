@@ -8,14 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import tech.atlabs.githubchallenge.ui.theme.AppBkgColor
 
 @Composable
-fun CustomLoadingIndicator() {
+fun LoadingIndicator() {
     Box(
         modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
