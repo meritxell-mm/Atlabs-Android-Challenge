@@ -27,7 +27,7 @@ class UserViewModel @Inject constructor(
 
     private var currentPage = 1
     private val perPage = 30
-    private var isLastPage = false
+    var isLastPage = false
 
     private val _userState = MutableStateFlow<UiState<User>>(UiState.Idle)
     val userState: StateFlow<UiState<User>> = _userState

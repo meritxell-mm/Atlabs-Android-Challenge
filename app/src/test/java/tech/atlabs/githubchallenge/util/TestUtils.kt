@@ -8,13 +8,23 @@ fun getMockUserWithRepos(): User {
     return getMockUser().copy(repos = mockRepos)
 }
 
-fun getMockRepos(): List<Repo> { //TODO fer-ho bé
+fun getMockRepos(): List<Repo> {
     val mockRepos = listOf(
         Repo(
             id = 132935648,
             name = "boysenberry-repo-1",
             private = false,
             htmlUrl = "https://github.com/octocat/boysenberry-repo-1",
+            description = "Testing",
+            language = null,
+            stargazersCount = 317,
+            forksCount = 19
+        ),
+        Repo(
+            id = 132935648,
+            name = "hello-world",
+            private = false,
+            htmlUrl = "https://github.com/octocat/hello-world",
             description = "Testing",
             language = null,
             stargazersCount = 317,

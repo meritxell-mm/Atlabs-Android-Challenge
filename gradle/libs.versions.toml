@@ -28,6 +28,7 @@ kotlinStdlib = "2.1.10"
 lifecycleViewmodelCompose = "2.8.7"
 mockitoCore = "5.12.0"
 mockitoKotlin = "5.4.0"
+mockk = "1.13.5"
 moshi = "1.15.2"
 moshiKotlin = "1.15.2"
 moshiKotlinCodegen = "1.15.1"
@@ -66,6 +67,7 @@ lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel
 material3 = { module = "androidx.compose.material3:material3" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
