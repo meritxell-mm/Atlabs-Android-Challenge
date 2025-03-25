@@ -13,12 +13,14 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColors = lightColorScheme(
     primary = AppGreyColor,
+    secondary = AppBlueColor,
     background = AppBkgColor,
     surface = AppSurfaceColor
 )
 
 private val DarkColors = darkColorScheme(
     primary = AppGreyColorDark,
+    secondary = AppBlueColor,
     background = AppBkgColorDark,
     surface = AppSurfaceColorDark
 )

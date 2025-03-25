@@ -44,6 +44,7 @@ import tech.atlabs.githubchallenge.ui.composable.user.details.getExtraItems
 import tech.atlabs.githubchallenge.ui.composable.user.details.header.UserDetailsHeader
 import tech.atlabs.githubchallenge.ui.utils.UiState
 import tech.atlabs.githubchallenge.ui.utils.addRepos
+import tech.atlabs.githubchallenge.ui.utils.openUrl
 import tech.atlabs.githubchallenge.viewmodel.UserViewModel
 
 @Composable
@@ -132,8 +133,7 @@ fun UserDetailSuccessLandscape(
         ) {
             item {
                 Box(modifier = Modifier.clickable {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.htmlUrl))
-                    context.startActivity(intent)
+                    context.openUrl(user.htmlUrl)
                 }) {
                     UserDetailsHeader(user = user)
                 }
@@ -201,8 +201,7 @@ fun UserDetailSuccessPortrait(
     ) {
         stickyHeader {
             Box(modifier = Modifier.clickable {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(user.htmlUrl))
-                context.startActivity(intent)
+                context.openUrl(user.htmlUrl)
             }) {
                 UserDetailsHeader(user = user)
             }
