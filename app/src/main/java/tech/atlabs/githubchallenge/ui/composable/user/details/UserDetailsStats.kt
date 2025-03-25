@@ -1,7 +1,5 @@
 package tech.atlabs.githubchallenge.ui.composable.user.details
 
-import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,45 +8,38 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
 import tech.atlabs.githubchallenge.ui.composable.commons.StatColumn
 import tech.atlabs.githubchallenge.ui.composable.commons.StatRow
 
 @Composable
-fun UserDetailsStats(user: User) {
-
-    val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
-
+fun UserDetailsStats(user: User, isLandscape: Boolean, screenWidth: Dp? = null) {
     Row(
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = dimensionResource(R.dimen.medium_padding))
             .border(
-                width = 1.dp,
+                width = dimensionResource(R.dimen.border_thickness),
                 color = MaterialTheme.colorScheme.primary,
                 shape = MaterialTheme.shapes.medium
             )
-            .background(
-                MaterialTheme.colorScheme.background,
-                shape = MaterialTheme.shapes.medium
-            )
-            .padding(12.dp)
+            .padding(dimensionResource(R.dimen.medium_padding))
     ) {
-        if (isLandscape) {
-            UserDetailsStatsLandscape(user)
+        if (screenWidth != null && screenWidth < dimensionResource(R.dimen.min_screen_width)) {
+            if (isLandscape) StatsInAColumn(user) else StatsInARow(user)
         } else {
-            UserDetailsStatsPortrait(user)
+            if (isLandscape) StatsInARow(user) else StatsInAColumn(user)
         }
     }
 }
 
 @Composable
-private fun UserDetailsStatsPortrait(user: User) {
+private fun StatsInAColumn(user: User) {
     StatColumn(
         label = stringResource(R.string.user_info_repos),
         value = user.publicRepos.toString()
@@ -64,7 +55,7 @@ private fun UserDetailsStatsPortrait(user: User) {
 }
 
 @Composable
-private fun UserDetailsStatsLandscape(user: User) {
+private fun StatsInARow(user: User) {
     StatRow(
         label = stringResource(R.string.user_info_repos),
         value = user.publicRepos.toString()

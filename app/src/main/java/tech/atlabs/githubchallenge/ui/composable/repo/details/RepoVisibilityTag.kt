@@ -7,6 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
@@ -20,8 +21,8 @@ fun RepoVisibilityTag(isPrivate: Boolean) {
 
     Box(
         modifier = Modifier
-            .border(1.dp, MaterialTheme.colorScheme.primary, MaterialTheme.shapes.medium)
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .border(dimensionResource(R.dimen.border_thickness), MaterialTheme.colorScheme.primary, MaterialTheme.shapes.medium)
+            .padding(horizontal = dimensionResource(R.dimen.small_padding), vertical = dimensionResource(R.dimen.xsmall_padding))
     ) {
         Text(
             text = visibilityText,

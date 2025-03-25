@@ -27,7 +27,9 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
@@ -86,15 +88,32 @@ fun UserDetailContent(
 fun UserDetailSuccess(user: User, isLoadingMore: Boolean, onLoadMore: () -> Unit) {
     val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+
     if (isLandscape) {
-        UserDetailSuccessLandscape(user, isLoadingMore = isLoadingMore, onLoadMore = onLoadMore)
+        UserDetailSuccessLandscape(
+            user,
+            screenWidth,
+            isLoadingMore = isLoadingMore,
+            onLoadMore = onLoadMore
+        )
     } else {
-        UserDetailSuccessPortrait(user, isLoadingMore = isLoadingMore, onLoadMore = onLoadMore)
+        UserDetailSuccessPortrait(
+            user,
+            screenWidth,
+            isLoadingMore = isLoadingMore,
+            onLoadMore = onLoadMore
+        )
     }
 }
 
 @Composable
-fun UserDetailSuccessLandscape(user: User, isLoadingMore: Boolean, onLoadMore: () -> Unit) {
+fun UserDetailSuccessLandscape(
+    user: User,
+    screenWidth: Dp,
+    isLoadingMore: Boolean,
+    onLoadMore: () -> Unit
+) {
     val context = LocalContext.current
 
     Row(
@@ -103,7 +122,10 @@ fun UserDetailSuccessLandscape(user: User, isLoadingMore: Boolean, onLoadMore: (
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
-                .padding(start = 20.dp, end = 10.dp)
+                .padding(
+                    start = dimensionResource(R.dimen.xxlarge_padding),
+                    end = dimensionResource(R.dimen.medium_padding)
+                )
         ) {
             item {
                 Box(modifier = Modifier.clickable {
@@ -112,23 +134,33 @@ fun UserDetailSuccessLandscape(user: User, isLoadingMore: Boolean, onLoadMore: (
                 }) {
                     UserDetailsHeader(user = user)
                 }
-                Spacer(modifier = Modifier.height(2.dp))
-                UserDetailsStats(user)
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.xxsmall_spacer)))
+                UserDetailsStats(user, true, screenWidth = screenWidth)
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.medium_spacer)))
                 UserDetailsExtraInfo(getExtraItems(user = user))
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.medium_spacer)))
             }
         }
 
-        VerticalDivider(thickness = 2.dp, modifier = Modifier.padding(vertical = 16.dp))
+        VerticalDivider(
+            thickness = dimensionResource(R.dimen.divider_thickness),
+            modifier = Modifier.padding(vertical = dimensionResource(R.dimen.xlarge_padding))
+        )
 
         Column(
             modifier = Modifier
+                .background(MaterialTheme.colorScheme.background)
                 .weight(1f)
-                .padding(start = 10.dp, end = 20.dp)
+                .padding(
+                    start = dimensionResource(R.dimen.medium_padding),
+                    end = dimensionResource(R.dimen.xxlarge_padding)
+                )
         ) {
             Text(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.xxlarge_padding),
+                    vertical = dimensionResource(R.dimen.large_padding)
+                ),
                 text = stringResource(R.string.user_info_repos),
                 style = MaterialTheme.typography.titleMedium
             )
@@ -139,7 +171,12 @@ fun UserDetailSuccessLandscape(user: User, isLoadingMore: Boolean, onLoadMore: (
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun UserDetailSuccessPortrait(user: User, isLoadingMore: Boolean, onLoadMore: () -> Unit) {
+fun UserDetailSuccessPortrait(
+    user: User,
+    screenWidth: Dp,
+    isLoadingMore: Boolean,
+    onLoadMore: () -> Unit
+) {
     val context = LocalContext.current
     val listState = rememberLazyListState()
 
@@ -169,13 +206,16 @@ fun UserDetailSuccessPortrait(user: User, isLoadingMore: Boolean, onLoadMore: ()
         }
 
         item {
-            Spacer(modifier = Modifier.height(12.dp))
-            UserDetailsStats(user)
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.medium_spacer)))
+            UserDetailsStats(user, false, screenWidth)
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.medium_spacer)))
             UserDetailsExtraInfo(getExtraItems(user = user))
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.medium_spacer)))
             Text(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.xxlarge_padding),
+                    vertical = dimensionResource(R.dimen.large_padding)
+                ),
                 text = stringResource(R.string.user_info_repos),
                 style = MaterialTheme.typography.titleMedium
             )

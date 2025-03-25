@@ -3,4 +3,5 @@
     <dimen name="avatar_size">80dp</dimen>
     <dimen name="screen_padding">16dp</dimen>
     <dimen name="search_spaced_items">12dp</dimen>
+    <dimen name="min_screen_width">800dp</dimen>
 </resources>

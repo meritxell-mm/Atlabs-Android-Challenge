@@ -12,18 +12,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import tech.atlabs.githubchallenge.R
 
 @Composable
 fun IconText(icon: ImageVector, iconDescription: String, value: String) {
-    Row(modifier = Modifier.padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
+    Row(
+        modifier = Modifier.padding(dimensionResource(R.dimen.xsmall_padding)),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
         Icon(
             imageVector = icon,
             contentDescription = iconDescription,
             tint = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.size(20.dp)
+            modifier = Modifier.size(dimensionResource(R.dimen.icon_size))
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_spacer)))
         Text(
             text = value,
             style = MaterialTheme.typography.bodyMedium,

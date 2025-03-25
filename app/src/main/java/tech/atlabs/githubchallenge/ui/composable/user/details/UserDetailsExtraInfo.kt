@@ -2,6 +2,7 @@ package tech.atlabs.githubchallenge.ui.composable.user.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -9,10 +10,11 @@ import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.outlined.Apartment
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.User
 import tech.atlabs.githubchallenge.ui.composable.commons.IconText
@@ -21,9 +23,13 @@ import tech.atlabs.githubchallenge.ui.composable.commons.IconText
 fun UserDetailsExtraInfo(extraInfo: (List<Triple<ImageVector, Int, String?>>)? = null) {
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(
+            dimensionResource(R.dimen.small_spacer),
+            Alignment.CenterVertically
+        ),
         modifier = Modifier
-            .padding(horizontal = 16.dp)
+            .fillMaxHeight()
+            .padding(horizontal = dimensionResource(R.dimen.xlarge_padding))
     ) {
         extraInfo?.forEach { (icon, iconDescription, value) ->
             IconText(

@@ -13,7 +13,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.Repo
 import tech.atlabs.githubchallenge.ui.composable.commons.UrlText
 import tech.atlabs.githubchallenge.ui.composable.repo.details.RepoHeader
@@ -26,15 +28,15 @@ fun RepoCard(repo: Repo) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 5.dp)
-            .border(1.dp, MaterialTheme.colorScheme.primary, MaterialTheme.shapes.medium)
+            .padding(horizontal = dimensionResource(R.dimen.xlarge_padding), vertical = dimensionResource(R.dimen.xsmall_padding))
+            .border(dimensionResource(R.dimen.border_thickness), MaterialTheme.colorScheme.primary, MaterialTheme.shapes.medium)
             .clickable {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(repo.htmlUrl))
                 context.startActivity(intent)
             },
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(dimensionResource(R.dimen.xlarge_padding))) {
             RepoHeader(repo)
             RepoInfo(repo)
             UrlText(repo.htmlUrl)

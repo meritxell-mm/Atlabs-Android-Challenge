@@ -2,7 +2,9 @@ package tech.atlabs.githubchallenge.ui.composable.commons
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -14,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,9 +30,9 @@ fun ErrorCard(
 ) {
     Card(
         modifier = Modifier
-            .padding(20.dp)
+            .padding(dimensionResource(R.dimen.xxlarge_padding))
             .border(
-                width = 1.dp,
+                width = dimensionResource(R.dimen.border_thickness),
                 color = AppErrorColor,
                 shape = MaterialTheme.shapes.medium
             ),
@@ -39,17 +42,17 @@ fun ErrorCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(dimensionResource(R.dimen.xlarge_padding)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = errorMessage,
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(bottom = 16.dp)
             )
 
             onRetry?.let {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.large_spacer)))
                 Button(
                     onClick = onRetry,
                     modifier = Modifier.fillMaxWidth(),

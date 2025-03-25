@@ -5,7 +5,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.ui.theme.AppBlueColor
 
 @Composable
@@ -14,6 +15,6 @@ fun UrlText(url: String) {
         text = url,
         style = MaterialTheme.typography.bodySmall,
         color = AppBlueColor,
-        modifier = Modifier.padding(top = 12.dp)
+        modifier = Modifier.padding(top = dimensionResource(R.dimen.large_padding))
     )
 }

@@ -36,7 +36,7 @@ fun Pic(avatarUrl: String) {
         modifier = Modifier
             .size(dimensionResource(R.dimen.avatar_size))
             .clip(CircleShape)
-            .border(1.dp, MaterialTheme.colorScheme.primary, CircleShape)
+            .border(dimensionResource(R.dimen.border_thickness), MaterialTheme.colorScheme.primary, CircleShape)
             .clickable { showDialog = true }
     )
 
@@ -59,7 +59,7 @@ private fun PicFullScreen(avatarUrl: String, onDismiss: () -> Unit) {
                     shape = CircleShape
                 )
                 .clickable { onDismiss() }
-                .padding(4.dp),
+                .padding(dimensionResource(R.dimen.xsmall_padding)),
             contentAlignment = Alignment.Center
         ) {
             AsyncImage(

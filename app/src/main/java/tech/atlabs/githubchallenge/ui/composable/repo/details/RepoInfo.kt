@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
@@ -25,21 +26,21 @@ fun RepoInfo(repo: Repo) {
         text = stringResource(R.string.repo_info_forked_from, repo.fullName),
         style = MaterialTheme.typography.bodySmall,
         color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.padding(top = 4.dp)
+        modifier = Modifier.padding(top = dimensionResource(R.dimen.xsmall_padding))
     )
     repo.description?.let {
         Text(
             text = repo.description,
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = dimensionResource(R.dimen.small_padding))
         )
     }
     Row(
         modifier = Modifier
-            .padding(top = 12.dp)
+            .padding(top = dimensionResource(R.dimen.large_padding))
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.large_spacer))
     ) {
         repo.language?.let { LanguageBadge(it) }
 
