@@ -21,15 +21,6 @@ import tech.atlabs.githubchallenge.ui.composable.commons.IconText
 
 @Composable
 fun RepoInfo(repo: Repo) {
-
-    if (repo.isForked) {
-        Text(
-            text = stringResource(R.string.repo_info_forked_from, repo.fullName),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(top = dimensionResource(R.dimen.xsmall_padding))
-        )
-    }
     repo.description?.let {
         Text(
             text = repo.description,

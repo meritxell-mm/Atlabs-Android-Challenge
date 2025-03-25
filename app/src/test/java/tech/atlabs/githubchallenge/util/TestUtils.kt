@@ -13,11 +13,9 @@ fun getMockRepos(): List<Repo> { //TODO fer-ho bé
         Repo(
             id = 132935648,
             name = "boysenberry-repo-1",
-            fullName = "octocat/boysenberry-repo-1",
             private = false,
             htmlUrl = "https://github.com/octocat/boysenberry-repo-1",
             description = "Testing",
-            isForked = true,
             language = null,
             stargazersCount = 317,
             forksCount = 19

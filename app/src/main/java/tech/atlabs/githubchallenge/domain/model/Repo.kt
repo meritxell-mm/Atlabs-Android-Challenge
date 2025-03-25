@@ -7,14 +7,10 @@ import com.squareup.moshi.JsonClass
 data class Repo(
     val id: Int,
     val name: String,
-    @Json(name = "full_name")
-    val fullName: String,
     val private: Boolean,
     @Json(name = "html_url")
     val htmlUrl: String,
     val description: String?,
-    @Json(name = "fork")
-    val isForked: Boolean,
     val language: String?,
     @Json(name = "stargazers_count")
     val stargazersCount: Int,
