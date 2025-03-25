@@ -14,19 +14,17 @@ data class User(
     @Json(name = "avatar_url") val avatarUrl: String,
     @Json(name = "html_url") val htmlUrl: String,
     val name: String?,
-    val company: String?,
-    val blog: String?,
-    val location: String?,
-    val email: String?,
-    val bio: String?,
-    @Json(name = "twitter_username") val twitterUsername: String?,
+    val company: String? = null,
+    val blog: String? = null,
+    val location: String? = null,
+    val email: String? = null,
+    val bio: String? = null,
     @Json(name = "public_repos") val publicRepos: Int,
     @Json(name = "public_gists") val publicGists: Int,
     val followers: Int,
     val following: Int,
     @Json(name = "created_at") val createdAt: String,
-    @Json(name = "updated_at") val updatedAt: String,
-    val repos: List<Repo>?
+    val repos: List<Repo>? = null
 ) {
     fun createdAtFormatted(): String {
         return createdAt.toFormattedDate()

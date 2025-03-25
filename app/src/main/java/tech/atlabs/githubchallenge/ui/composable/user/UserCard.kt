@@ -28,7 +28,7 @@ import tech.atlabs.githubchallenge.ui.composable.user.details.header.UserDetails
 
 
 @Composable
-fun UserCard(user: User, onUserClick: (String) -> Unit) {
+fun UserCard(user: User, onUserClick: (String) -> Unit = {}) {
     Card(
         modifier = Modifier
             .fillMaxWidth(),

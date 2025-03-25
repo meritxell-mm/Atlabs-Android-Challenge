@@ -62,7 +62,7 @@ class UserViewModel @Inject constructor(
         fetchUserData(username, getUserUseCase::invoke)
     }
 
-    fun getUserWithRepos( username: String) {
+    fun getUserWithRepos(username: String) {
         fetchUserData(username, getUserWithReposUseCase::invoke)
     }
 

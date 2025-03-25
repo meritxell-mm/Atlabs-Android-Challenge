@@ -89,10 +89,3 @@ private fun SearchScreenContent(
 private fun SearchSuccessState(user: User, onUserClick: (String) -> Unit) {
     UserCard(user = user, onUserClick = onUserClick)
 }
-
-@Composable
-@Preview(showBackground = true)
-fun SearchScreenPreview() {
-    /*TODO  val mockViewModel = UserViewModel(FakeUserRepository())
-      SearchScreen(viewModel = mockViewModel)*/
-}

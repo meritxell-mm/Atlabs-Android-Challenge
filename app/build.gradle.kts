@@ -54,6 +54,9 @@ android {
      packaging {
          resources {
              excludes += "/META-INF/{AL2.0,LGPL2.1}"
+             excludes += "META-INF/INDEX.LIST"
+             excludes += "META-INF/DEPENDENCIES"
+             excludes += "META-INF/io.netty.versions.properties"
          }
      }
 }
@@ -78,15 +81,21 @@ dependencies {
 
     // Android Studio Preview support
     implementation(libs.ui.tooling.preview)
+    implementation(libs.firebase.appdistribution.gradle)
+    implementation(libs.androidx.junit.ktx)
+    implementation(libs.androidx.ui.test.junit4.android)
     debugImplementation(libs.ui.tooling)
 
     //TESTING
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    androidTestImplementation(libs.androidx.core)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    // UI Tests //TODO?
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    testImplementation("io.mockk:mockk:1.13.2")
+    androidTestImplementation(libs.androidx.runner)
 
     //RETROFIT
     implementation(libs.retrofit)

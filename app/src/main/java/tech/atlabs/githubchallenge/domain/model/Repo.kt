@@ -13,14 +13,11 @@ data class Repo(
     @Json(name = "html_url")
     val htmlUrl: String,
     val description: String?,
-    val fork: Boolean,
+    @Json(name = "fork")
+    val isForked: Boolean,
     val language: String?,
     @Json(name = "stargazers_count")
     val stargazersCount: Int,
     @Json(name = "forks_count")
-    val forksCount: Int,
-    @Json(name = "created_at")
-    val createdAt: String,
-    @Json(name = "updated_at")
-    val updatedAt: String
+    val forksCount: Int
 )

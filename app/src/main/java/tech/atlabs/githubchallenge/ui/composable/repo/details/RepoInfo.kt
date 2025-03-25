@@ -14,7 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import tech.atlabs.githubchallenge.R
 import tech.atlabs.githubchallenge.domain.model.Repo
 import tech.atlabs.githubchallenge.ui.composable.commons.IconText
@@ -22,12 +21,15 @@ import tech.atlabs.githubchallenge.ui.composable.commons.IconText
 
 @Composable
 fun RepoInfo(repo: Repo) {
-    Text(
-        text = stringResource(R.string.repo_info_forked_from, repo.fullName),
-        style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.primary,
-        modifier = Modifier.padding(top = dimensionResource(R.dimen.xsmall_padding))
-    )
+
+    if (repo.isForked) {
+        Text(
+            text = stringResource(R.string.repo_info_forked_from, repo.fullName),
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(top = dimensionResource(R.dimen.xsmall_padding))
+        )
+    }
     repo.description?.let {
         Text(
             text = repo.description,
