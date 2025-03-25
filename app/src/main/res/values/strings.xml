@@ -24,6 +24,7 @@
     <string name="error_bad_request">The request is not in the correct format.</string>
     <string name="error_server">Failed to connect to the server correctly.</string>
     <string name="error_btn_retry">RETRY</string>
+    <string name="error_empty_username">Please, type a username to find it on Github</string>
 
     <!-- SEARCH SCREEN -->
     <string name="search_title">Github User Finder</string>
@@ -42,7 +43,6 @@
     <string name="repo_info_forked_from">Forked from %1$s</string>
     <string name="repo_info_private">Private</string>
     <string name="repo_info_public">Public</string>
-    <string name="repo_info_empty">No repositories found.</string>
-    <string name="error_empty_username">Please, type a username to find it on Github</string>
+    <string name="repo_info_empty">No repositories found</string>
 
 </resources>

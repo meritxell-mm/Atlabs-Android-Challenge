@@ -6,10 +6,12 @@ import android.net.Uri
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -122,10 +124,11 @@ fun UserDetailSuccessLandscape(
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
+                .fillMaxHeight()
                 .padding(
                     start = dimensionResource(R.dimen.xxlarge_padding),
                     end = dimensionResource(R.dimen.medium_padding)
-                )
+                ), verticalArrangement = Arrangement.Center
         ) {
             item {
                 Box(modifier = Modifier.clickable {
@@ -149,7 +152,7 @@ fun UserDetailSuccessLandscape(
 
         Column(
             modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.surface)
                 .weight(1f)
                 .padding(
                     start = dimensionResource(R.dimen.medium_padding),
